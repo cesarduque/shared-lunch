@@ -1,0 +1,25 @@
+<app-avatar [imageSrc]="'./assets/logo small.png'"></app-avatar>
+<app-avatar [imageSrc]="'./assets/logo small.png'"></app-avatar>
+
+<h2>No Match</h2>
+
+<br>
+<h3>Keep It cool.</h3>
+<h3>Our team is working in the next<br>
+shared lunch experience.</h3>
+
+<h1>Status: <label *ngIf="available">Available</label>
+            <label *ngIf="!available">Unvailable</label></h1> 
+<h2>for you next lunch</h2> 
+
+<div class="button-row">
+    <button mat-raised-button
+            color="primary"
+            (click)="changeStatus()">Change Status</button>
+</div>
+
+<div class="button-row">
+    <button mat-raised-button
+            color="primary"
+            (click)="match()">Start Match</button>
+</div>

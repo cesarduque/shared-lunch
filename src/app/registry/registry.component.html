@@ -1,0 +1,71 @@
+<app-avatar [imageSrc]="'./assets/logo small.png'" ></app-avatar>
+<form  [formGroup]="registryForm">
+  <mat-form-field>
+    <input matInput placeholder="Company Email"
+    id="email"                   
+    formControlName="email"               
+    required>
+  </mat-form-field> <br>
+
+  <mat-form-field>
+    <input matInput placeholder="Password"
+    id="password"
+    formControlName="password"               
+    required>
+  </mat-form-field> <br>
+
+  <mat-form-field>
+      <input matInput placeholder="Comfirm Password"
+      id="comfirmPassword"
+      formControlName="comfirmPassword"               
+      required>
+    </mat-form-field> <br>
+
+  <mat-form-field>
+    <input matInput placeholder="First Name"
+    id="firstName"
+    formControlName="firstName"               
+    required>
+  </mat-form-field><br>
+
+  <mat-form-field>
+    <input matInput placeholder="Last Name"
+    id="lastName"
+    formControlName="lastName"               
+    required>
+  </mat-form-field> <br>
+
+  <mat-form-field>
+    <input matInput placeholder="Area"
+    id="area"
+    formControlName="area"               
+    required>
+  </mat-form-field> <br>
+
+  <mat-form-field>
+    <input matInput placeholder="Phone"
+    id="phone"
+    formControlName="phone"               
+    required>
+  </mat-form-field> <br>
+
+  <mat-form-field>
+    <input matInput placeholder="Description"
+    id="description"
+    formControlName="description"               
+    required>
+  </mat-form-field> <br>
+
+  <div class="button-row">
+    <button mat-raised-button
+            color="primary"
+            (click)="goBack()">Back</button>
+</div>
+
+<div class="button-row">
+  <button mat-raised-button
+          color="primary"
+          [disabled]="!registryForm.valid"
+          (click)="register()">Enter</button>
+</div>
+</form>
