@@ -1,4 +1,15 @@
-.caja {
+#container {
+	width: 40%;
+	height: 200px;
+	margin: 0 auto;
+}
+#izquierda {
+	width: 50%;
+	height: 200px;
 	float: left;
-	margin-left: 5px;
+}
+#derecha {
+	width: 50%;
+	height: 200px;
+	float: left;
 }

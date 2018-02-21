@@ -1,3 +1,6 @@
-gray {
-	background-color: grey;
+#header {
+	padding: 0.5px;
+	padding: 10px;
+	color: white;
+	background-color: rgb(106, 119, 236);
 }

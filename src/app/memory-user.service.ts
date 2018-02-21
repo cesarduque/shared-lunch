@@ -4687,7 +4687,7 @@ export class MemoryUserService implements InMemoryDbService {
 				interests: [ 'Movies', 'Food' ],
 				description: 'Front-End developer',
 				location: 1,
-				currentMatch: null,
+				currentMatch: 79,
 				matches: [
 					{
 						id: 25,
@@ -4731,7 +4731,7 @@ export class MemoryUserService implements InMemoryDbService {
 				interests: [ 'Movies', 'Food' ],
 				description: 'Front-End developer',
 				location: 1,
-				currentMatch: null,
+				currentMatch: 78,
 				matches: [
 					{
 						id: 3,

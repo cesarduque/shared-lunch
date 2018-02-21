@@ -20,8 +20,15 @@ export class RegistryComponent implements OnInit {
 		area: new FormControl(),
 		phone: new FormControl(),
 		interests: new FormControl(),
-		description: new FormControl()
+		description: new FormControl(),
+		vegetables: new FormControl(),
+		movies: new FormControl(),
+		music: new FormControl(),
+		sports: new FormControl(),
+		food: new FormControl(),
+		coffee: new FormControl()
 	});
+	interest: string[] = [];
 
 	constructor(private route: Router, private userService: UserService) {}
 
@@ -30,7 +37,33 @@ export class RegistryComponent implements OnInit {
 	goBack() {
 		this.route.navigate([ '/' ]);
 	}
+
 	register() {
+		if (this.registryForm.get('vegetables').value) {
+			this.interest.push('vegetables');
+		}
+
+		if (this.registryForm.get('movies').value) {
+			this.interest.push('movies');
+		}
+
+		if (this.registryForm.get('music').value) {
+			this.interest.push('music');
+		}
+
+		if (this.registryForm.get('sports').value) {
+			this.interest.push('sports');
+		}
+
+		if (this.registryForm.get('food').value) {
+			this.interest.push('food');
+		}
+
+		if (this.registryForm.get('coffee').value) {
+			this.interest.push('coffee');
+		}
+		console.log(this.interest);
+
 		this.userService
 			.create(
 				new User(
@@ -41,7 +74,7 @@ export class RegistryComponent implements OnInit {
 					this.registryForm.get('password').value,
 					this.registryForm.get('area').value,
 					this.registryForm.get('phone').value,
-					[],
+					this.interest,
 					this.registryForm.get('description').value,
 					1,
 					1,

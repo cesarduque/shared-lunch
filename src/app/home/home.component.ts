@@ -10,45 +10,60 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 	users: IUser[];
-	currentUser: IUser;
-	available: boolean;
+	currentUser = {
+		id: 0,
+		available: true,
+		firstName: '',
+		lastName: '',
+		email: '',
+		password: '',
+		area: '',
+		phone: '',
+		interests: [],
+		description: '',
+		location: 1,
+		currentMatch: null,
+		matches: []
+	};
 
-	constructor(
-		private route: Router,
-		private userService: UserService,
-		private activateRoute: ActivatedRoute
-	) {}
+	constructor(private route: Router, private userService: UserService) {}
 
 	ngOnInit() {
-		this.userService.getById(this.activateRoute.snapshot.params['id']).subscribe((user) => {
-			this.currentUser = user;
-			this.available = this.currentUser.available;
-			console.log(this.currentUser);
-		});
+		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 	}
 
 	changeStatus() {
-		this.available = !this.currentUser.available;
 		this.currentUser.available = !this.currentUser.available;
 		this.userService.update(this.currentUser);
 	}
 
-	match(id: number) {
+	match() {
+		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 		this.userService.getAll().subscribe((users: IUser[]) => {
 			this.users = users.filter(
-				(user) => user.id !== id && user.available === true && user.currentMatch === null
+				(user) =>
+					user.id !== this.currentUser.id &&
+					user.available === true &&
+					user.currentMatch === null
 			);
-			const random = Math.floor(Math.random() * this.users.length + 1);
-			const userRandom = this.users.find((user) => user.id === random);
 
-			console.log(userRandom);
-			console.log(this.currentUser);
-			this.currentUser.currentMatch = userRandom.id;
-			userRandom.currentMatch = this.currentUser.id;
+			let random = Math.floor(Math.random() * this.users.length);
+			let matchUser = this.users.find((user) => user.id === random);
+
+			while (matchUser === undefined) {
+				random = Math.floor(Math.random() * this.users.length);
+				matchUser = this.users.find((user) => user.id === random);
+			}
+
+			console.log(matchUser);
+			this.currentUser.currentMatch = matchUser.id;
+			matchUser.currentMatch = this.currentUser.id;
+
+			localStorage.setItem('matchUser', JSON.stringify(matchUser));
 
 			this.userService.update(this.currentUser).subscribe((data: IUser) => {
 				console.log(data);
-				this.userService.update(userRandom).subscribe();
+				this.userService.update(matchUser).subscribe();
 			});
 
 			this.route.navigate([ '/match' ]);

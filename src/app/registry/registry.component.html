@@ -1,10 +1,12 @@
+<br>
+<div style="text-align:center">
 <app-avatar [imageSrc]="'./assets/logo small.png'" ></app-avatar>
 <form  [formGroup]="registryForm">
   <mat-form-field>
     <input matInput placeholder="Company Email"
     id="email"                   
     formControlName="email"               
-    required>
+    required>    
   </mat-form-field> <br>
 
   <mat-form-field>
@@ -56,12 +58,21 @@
     required>
   </mat-form-field> <br>
 
+  <section class="example-section">
+    <mat-checkbox class="example-margin" id="vegetables" formControlName="vegetables">Vegetables</mat-checkbox>
+    <mat-checkbox class="example-margin" id="movies" formControlName="movies">Movies</mat-checkbox>
+    <mat-checkbox class="example-margin" id="music" formControlName="music">Music</mat-checkbox>
+    <mat-checkbox class="example-margin" id="sports" formControlName="sports">Sports</mat-checkbox>
+    <mat-checkbox class="example-margin" id="food" formControlName="food">Food</mat-checkbox>
+    <mat-checkbox class="example-margin" id="coffee" formControlName="coffee">Coffee</mat-checkbox>    
+  </section>
+
   <div class="button-row">
     <button mat-raised-button
             color="primary"
             (click)="goBack()">Back</button>
 </div>
-
+<br>
 <div class="button-row">
   <button mat-raised-button
           color="primary"
@@ -69,3 +80,5 @@
           (click)="register()">Enter</button>
 </div>
 </form>
+
+</div>

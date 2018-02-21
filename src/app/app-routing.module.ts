@@ -10,7 +10,7 @@ import { RateComponent } from './rate/rate.component';
 const appRoutes: Routes = [
 	{ path: '', component: LoginComponent },
 	{ path: 'registry', component: RegistryComponent },
-	{ path: 'home/:id', component: HomeComponent },
+	{ path: 'home', component: HomeComponent },
 	{ path: 'match', component: MatchComponent },
 	{ path: 'rate', component: RateComponent }
 ];

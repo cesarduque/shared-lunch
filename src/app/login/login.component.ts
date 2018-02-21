@@ -1,3 +1,4 @@
+import { UserService } from './../user.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { IUser } from './../user.interface';
 import { Component, OnInit } from '@angular/core';
@@ -11,14 +12,34 @@ import { AuthenticationService } from '../authentication.service';
 	styleUrls: [ './login.component.css' ]
 })
 export class LoginComponent implements OnInit {
-	users: IUser[];
-	currentUser: IUser;
+	private _users: IUser[];
+	private _currentUser: IUser;
 	loginForm = new FormGroup({
 		email: new FormControl(),
 		password: new FormControl()
 	});
 
-	constructor(private route: Router, private authenticationService: AuthenticationService) {}
+	constructor(
+		private route: Router,
+		private authenticationService: AuthenticationService,
+		private userService: UserService
+	) {}
+
+	get users(): IUser[] {
+		return this._users;
+	}
+
+	set users(users: IUser[]) {
+		this._users = users;
+	}
+
+	get currentUser(): IUser {
+		return this._currentUser;
+	}
+
+	set currentUser(users: IUser) {
+		this._currentUser = users;
+	}
 
 	ngOnInit() {}
 
@@ -30,8 +51,16 @@ export class LoginComponent implements OnInit {
 					user.email === this.loginForm.get('email').value &&
 					user.password === this.loginForm.get('password').value
 			);
-			if (this.currentUser !== undefined) {
-				this.route.navigate([ '/home/' + this.currentUser.id ]);
+			if (this.currentUser !== null) {
+				localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+				if (this.currentUser.currentMatch !== null) {
+					this.userService.getById(this.currentUser.currentMatch).subscribe((user) => {
+						localStorage.setItem('matchUser', JSON.stringify(user));
+						this.route.navigate([ '/match/' ]);
+					});
+				} else {
+					this.route.navigate([ '/home/' ]);
+				}
 			}
 		});
 	}

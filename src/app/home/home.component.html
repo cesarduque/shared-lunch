@@ -1,6 +1,16 @@
-<app-avatar [imageSrc]="'./assets/logo small.png'"></app-avatar>
-<app-avatar [imageSrc]="'./assets/logo small.png'"></app-avatar>
-
+<br>
+<div id="container" >       
+                <div id="izquierda">
+                        <app-avatar [imageSrc]="'https://api.adorable.io/avatars/300/352@adorable.io.png'"></app-avatar>
+                    </div>
+                    <div id="derecha">
+                        <app-avatar [imageSrc]="'./assets/logo small.png'">
+                    </app-avatar></div>
+      
+        
+    </div>
+    <br>
+<div style="text-align:center">
 <h2>No Match</h2>
 
 <br>
@@ -8,8 +18,8 @@
 <h3>Our team is working in the next<br>
 shared lunch experience.</h3>
 
-<h1>Status: <label *ngIf="available">Available</label>
-            <label *ngIf="!available">Unvailable</label></h1> 
+<h1>Status: <label *ngIf="currentUser.available">Available</label>
+            <label *ngIf="!currentUser.available">Unvailable</label></h1> 
 <h2>for you next lunch</h2> 
 
 <div class="button-row">
@@ -17,9 +27,11 @@ shared lunch experience.</h3>
             color="primary"
             (click)="changeStatus()">Change Status</button>
 </div>
-
+<br>
 <div class="button-row">
     <button mat-raised-button
             color="primary"
-            (click)="match(currentUser.id)">Start Match</button>
+            [disabled] = "!currentUser.available"
+            (click)="match()">Start Match</button>
+</div>
 </div>

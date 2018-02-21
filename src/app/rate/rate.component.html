@@ -1,10 +1,24 @@
-<app-avatar></app-avatar>
-        <p>
-            rate works!
-          </p>
+<br>
+<div style="text-align:center">
+<app-avatar [imageSrc]="'https://api.adorable.io/avatars/300/301@adorable.io.png'"></app-avatar>
+<br>
+<h3>How was your Lunch?</h3>
+<h3>How was your lunch with {{matchUser.firstName}} {{matchUser.lastName}}<br>
+Hope it was a awesome experience.</h3>
+
+<mat-form-field>
+<mat-select [(value)]="selected">
+    <mat-option>None</mat-option>
+    <mat-option value="awesome">Awesome</mat-option>
+    <mat-option value="good">Good</mat-option>
+    <mat-option value="meh">Meh</mat-option>
+    <mat-option value="nogreat*">No so Great</mat-option>
+</mat-select>
+</mat-form-field>
           
 <div class="button-row">
     <button mat-raised-button
             color="primary"
             (click)="ok()">OK</button>
+</div>
 </div>

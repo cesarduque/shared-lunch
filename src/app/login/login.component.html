@@ -1,15 +1,18 @@
+<div style="text-align:center">
+<br>
 <app-avatar [imageSrc]="'./assets/logo small.png'" ></app-avatar>
+<br>
 <div class="example-container">
 <form [formGroup]="loginForm">
-    <mat-form-field>
+    <mat-form-field >
             <input matInput
                     placeholder="Email"
                     id="email"                   
                     formControlName="email"               
                     required>
         </mat-form-field>
-    
-        <mat-form-field>
+    <br>
+        <mat-form-field> 
             <input matInput
                     placeholder="Password"
                     id="password"                   
@@ -27,3 +30,5 @@
 </div>
 <br>
 <a [routerLink]="['/registry']">I'M NEW</a>
+
+</div>
