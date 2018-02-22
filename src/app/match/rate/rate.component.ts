@@ -44,6 +44,10 @@ export class RateComponent implements OnInit {
 		this.matchUser = JSON.parse(localStorage.getItem('matchUser'));
 	}
 
+	goBack() {
+		this.route.navigate([ '/match' ]);
+	}
+
 	ok() {
 		this.userServie.getById(this.currentUser.id).subscribe((user: IUser) => {
 			user.currentMatch = null;
