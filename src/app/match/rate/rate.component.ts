@@ -1,7 +1,7 @@
-import { UserService } from './../user.service';
-import { IUser } from './../user.interface';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IUser } from '../../user.interface';
+import { UserService } from '../../core/user.service';
 
 @Component({
 	selector: 'app-rate',
@@ -9,9 +9,33 @@ import { Router } from '@angular/router';
 	styleUrls: [ './rate.component.css' ]
 })
 export class RateComponent implements OnInit {
-	matchUser: IUser;
-	currentUser: IUser;
-	selected: 'awesome';
+	private _matchUser: IUser;
+	private _currentUser: IUser;
+	private _selected = 1;
+
+	public get currentUser(): IUser {
+		return this._currentUser;
+	}
+
+	public set currentUser(users: IUser) {
+		this._currentUser = users;
+	}
+
+	public get matchUser(): IUser {
+		return this._matchUser;
+	}
+
+	public set matchUser(matchUser: IUser) {
+		this._matchUser = matchUser;
+	}
+
+	public get selected(): number {
+		return this._selected;
+	}
+
+	public set selected(select: number) {
+		this._selected = select;
+	}
 
 	constructor(private userServie: UserService, private route: Router) {}
 
@@ -25,8 +49,8 @@ export class RateComponent implements OnInit {
 			user.currentMatch = null;
 			user.matches.push({
 				id: this.matchUser.id,
-				date: '02/21/2018',
-				rate: 1,
+				date: new Date().getDate().toString(),
+				rate: this.selected,
 				cancelMessage: '',
 				cancelMessageToHHRR: ''
 			});
@@ -51,7 +75,7 @@ export class RateComponent implements OnInit {
 
 				localStorage.setItem('currentUser', JSON.stringify(user));
 				localStorage.setItem('matchUser', JSON.stringify(null));
-				this.route.navigate([ '/home/' ]);
+				this.route.navigate([ '/home' ]);
 			});
 		});
 	}

@@ -1,7 +1,7 @@
-import { UserService } from './../user.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { IUser } from '../user.interface';
+import { IUser } from '../../user.interface';
+import { UserService } from '../../core/user.service';
 
 @Component({
 	selector: 'app-match',
@@ -9,8 +9,8 @@ import { IUser } from '../user.interface';
 	styleUrls: [ './match.component.css' ]
 })
 export class MatchComponent implements OnInit {
-	currentUser: IUser;
-	matchUser = {
+	private _currentUser: IUser;
+	private _matchUser = {
 		id: 0,
 		available: true,
 		firstName: '',
@@ -25,6 +25,14 @@ export class MatchComponent implements OnInit {
 		currentMatch: null,
 		matches: []
 	};
+
+	public get matchUser(): IUser {
+		return this._matchUser;
+	}
+
+	public set matchUser(matchUser: IUser) {
+		this._matchUser = matchUser;
+	}
 	constructor(private route: Router, private userService: UserService) {}
 
 	ngOnInit() {
@@ -35,5 +43,7 @@ export class MatchComponent implements OnInit {
 		this.route.navigate([ '/rate' ]);
 	}
 
-	cancelLunch() {}
+	cancelLunch() {
+		this.route.navigate([ '/cancelLunch' ]);
+	}
 }

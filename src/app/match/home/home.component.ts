@@ -1,7 +1,7 @@
-import { IUser } from './../user.interface';
-import { UserService } from './../user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
+import { IUser } from '../../user.interface';
+import { UserService } from '../../core/user.service';
 
 @Component({
 	selector: 'app-home',
@@ -9,7 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 	styleUrls: [ './home.component.css' ]
 })
 export class HomeComponent implements OnInit {
-	users: IUser[];
+	private _users: IUser[];
+	private _matchUser: IUser;
 	currentUser = {
 		id: 0,
 		available: true,
@@ -26,6 +27,22 @@ export class HomeComponent implements OnInit {
 		matches: []
 	};
 
+	public get users(): IUser[] {
+		return this._users;
+	}
+
+	public set users(users: IUser[]) {
+		this._users = users;
+	}
+
+	public get matchUser(): IUser {
+		return this._matchUser;
+	}
+
+	public set matchUser(matchUser: IUser) {
+		this._matchUser = matchUser;
+	}
+
 	constructor(private route: Router, private userService: UserService) {}
 
 	ngOnInit() {
@@ -34,7 +51,7 @@ export class HomeComponent implements OnInit {
 
 	changeStatus() {
 		this.currentUser.available = !this.currentUser.available;
-		this.userService.update(this.currentUser);
+		this.userService.update(this.currentUser).subscribe();
 	}
 
 	match() {

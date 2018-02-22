@@ -9,20 +9,22 @@
     required>    
   </mat-form-field> <br>
 
-  <mat-form-field>
-    <input matInput placeholder="Password"
-    id="password"
-    formControlName="password"               
-    required>
-  </mat-form-field> <br>
+  <div formGroupName="passwordGroup">
+      <mat-form-field>
+        <input matInput placeholder="Password"
+        id="password"
+        formControlName="password"               
+        required>
+      </mat-form-field> <br>
 
-  <mat-form-field>
-      <input matInput placeholder="Comfirm Password"
-      id="comfirmPassword"
-      formControlName="comfirmPassword"               
-      required>
-    </mat-form-field> <br>
-
+      <mat-form-field>
+          <input matInput placeholder="Comfirm Password"
+          id="comfirmPassword"
+          formControlName="comfirmPassword"               
+          required>
+        </mat-form-field> <br>
+</div>
+<mat-error *ngIf="registryForm.get('passwordGroup').errors !== null  && registryForm.get('passwordGroup').get('password').touched && registryForm.get('passwordGroup').get('comfirmPassword').touched && registryForm.get('passwordGroup').errors.validPassword">Passwords don't match</mat-error>
   <mat-form-field>
     <input matInput placeholder="First Name"
     id="firstName"
@@ -57,6 +59,14 @@
     formControlName="description"               
     required>
   </mat-form-field> <br>
+
+  <mat-form-field>
+      <mat-select [(value)]="location">       
+          <mat-option value="0">Yuxi</mat-option>
+          <mat-option value="1">Outside</mat-option>
+          <mat-option value="2">Both</mat-option>          
+      </mat-select>
+  </mat-form-field>
 
   <section class="example-section">
     <mat-checkbox class="example-margin" id="vegetables" formControlName="vegetables">Vegetables</mat-checkbox>

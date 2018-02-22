@@ -1,0 +1,27 @@
+<div style="text-align:center">
+<h1>Match:</h1>
+<h2>{{matchUser.firstName}} {{matchUser.lastName}}</h2>
+<h1>Message to Match</h1>
+<mat-form-field>
+  <textarea matInput placeholder="Message" matTextareaAutosize matAutosizeMinRows="2"
+            matAutosizeMaxRows="5" [(ngModel)]="messageMatch"></textarea>
+</mat-form-field>
+
+<h1>Message to HR</h1>
+<mat-form-field>
+  <textarea matInput placeholder="Message" matTextareaAutosize matAutosizeMinRows="2"
+            matAutosizeMaxRows="5" [(ngModel)]="messageHr"></textarea>
+</mat-form-field>
+
+<div class="button-row">
+  <button mat-raised-button
+          color="primary"
+          (click)="goBack()">Cancel</button>
+</div>
+<br>
+<div class="button-row">
+  <button mat-raised-button
+          color="primary"
+          (click)="save()">Save</button>
+</div>
+</div>

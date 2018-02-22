@@ -1,0 +1,23 @@
+<br>
+<div style="text-align:center">
+    <app-avatar [imageSrc]="'https://api.adorable.io/avatars/300/301@adorable.io.png'"></app-avatar>
+    <br>
+    <h3>How was your Lunch?</h3>
+    <h3>How was your lunch with {{matchUser.firstName}} {{matchUser.lastName}}<br>
+    Hope it was a awesome experience.</h3>
+
+    <mat-form-field>
+        <mat-select [(value)]="selected">          
+            <mat-option value="1">Awesome</mat-option>
+            <mat-option value="2">Good</mat-option>
+            <mat-option value="3">Meh</mat-option>
+            <mat-option value="4">No so Great</mat-option>
+        </mat-select>
+    </mat-form-field>
+            
+    <div class="button-row">
+        <button mat-raised-button
+                color="primary"
+                (click)="ok()">OK</button>
+    </div>
+</div>

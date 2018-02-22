@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IUser, User } from './user.interface';
 import { Observable } from 'rxjs/Observable';
+import { IUser } from '../user.interface';
 
 @Injectable()
 export class UserService {
@@ -15,11 +15,11 @@ export class UserService {
 		return this.http.get<IUser>('api/users/' + id);
 	}
 
-	create(user: User): Observable<IUser> {
-		return this.http.post<User>('api/users', user);
+	create(user: IUser): Observable<IUser> {
+		return this.http.post<IUser>('api/users', user);
 	}
 
-	update(user: User): Observable<IUser> {
-		return this.http.put<User>('api/users/' + user.id, user);
+	update(user: IUser): Observable<IUser> {
+		return this.http.put<IUser>('api/users/' + user.id, user);
 	}
 }

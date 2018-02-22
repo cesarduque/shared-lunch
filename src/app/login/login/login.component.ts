@@ -1,10 +1,10 @@
-import { UserService } from './../user.service';
 import { FormGroup, FormControl } from '@angular/forms';
-import { IUser } from './../user.interface';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { AuthenticationService } from '../authentication.service';
+import { IUser } from '../../user.interface';
+import { AuthenticationService } from '../../core/authentication.service';
+import { UserService } from '../../core/user.service';
 
 @Component({
 	selector: 'app-login',
@@ -25,19 +25,19 @@ export class LoginComponent implements OnInit {
 		private userService: UserService
 	) {}
 
-	get users(): IUser[] {
+	public get users(): IUser[] {
 		return this._users;
 	}
 
-	set users(users: IUser[]) {
+	public set users(users: IUser[]) {
 		this._users = users;
 	}
 
-	get currentUser(): IUser {
+	public get currentUser(): IUser {
 		return this._currentUser;
 	}
 
-	set currentUser(users: IUser) {
+	public set currentUser(users: IUser) {
 		this._currentUser = users;
 	}
 
