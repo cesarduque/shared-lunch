@@ -55,7 +55,6 @@ export class HomeComponent implements OnInit {
 	}
 
 	match() {
-		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 		this.userService.getAll().subscribe((users: IUser[]) => {
 			this.users = users.filter(
 				(user) =>
@@ -77,6 +76,7 @@ export class HomeComponent implements OnInit {
 			matchUser.currentMatch = this.currentUser.id;
 
 			localStorage.setItem('matchUser', JSON.stringify(matchUser));
+			localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
 
 			this.userService.update(this.currentUser).subscribe((data: IUser) => {
 				console.log(data);

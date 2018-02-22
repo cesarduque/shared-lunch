@@ -92,7 +92,7 @@ export class RegistryComponent implements OnInit {
 
 		this.userService
 			.create({
-				id: 0,
+				id: null,
 				available: true,
 				firstName: this.registryForm.get('firstName').value,
 				lastName: this.registryForm.get('lastName').value,
@@ -112,6 +112,7 @@ export class RegistryComponent implements OnInit {
 					usersPrueba = users;
 					console.log(usersPrueba);
 				});
+				localStorage.setItem('currentUser', JSON.stringify(data));
 				this.route.navigate([ '/home' ]);
 			});
 	}
